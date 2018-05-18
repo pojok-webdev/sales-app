@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <button side="right" ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>
+      Sales App
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <button ion-button block menuToggle>Toggle Menu</button>
+  sales - PadiNET.
+  <p>
+    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
+  </p>
+</ion-content>
+<ion-menu side="left" [content]="mycontent">
+  <ion-content>
+    <ion-list >
+      <ion-item (click)="openPage(VisitsPage)"><ion-icon name="bicycle" menuToggle></ion-icon> Daftar Visit </ion-item>
+      <ion-item (click)="addVisitPage()"><ion-icon name="paper-plane"menuToggle></ion-icon> Request Visit</ion-item>
+      <ion-item (click)="entryOtp()"><ion-icon name="calculator"menuToggle> </ion-icon> Entry OTP</ion-item>
+      <ion-item (click)="openPage(AppSettingsPage)"><ion-icon name="calculator"menuToggle> </ion-icon> Setting</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-nav #mycontent ></ion-nav>
