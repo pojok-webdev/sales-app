@@ -10,6 +10,7 @@ import { VisitsPage } from '../pages/visits/visits';
 import { AddVisitPage } from '../pages/visits/add';
 import { EntryOtpPage } from '../pages/visits/entryOtp';
 import { AppSettingsPage } from '../pages/home/settings';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AppSettingsPage } from '../pages/home/settings';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -12,20 +12,10 @@
   <ion-content padding>
     <button ion-button block>Request</button>
     <ion-list>
-      <ion-item>
-        <h2>Dwi</h2>
-        <h3>PT Jamu Iboe</h3>
-        <h4>Jl Mayjen Sungkono 83</h4>
-      </ion-item>
-      <ion-item>
-        <h2>Dwi</h2>
-        <h3>PT Jamu Iboe</h3>
-        <h4>Jl Mayjen Sungkono 83</h4>
-      </ion-item>
-      <ion-item>
-        <h2>Amir</h2>
-        <h3>PT Resto Iboe</h3>
-        <h4>Jl Mayjen Sungkono 83</h4>
+      <ion-item *ngFor="let client of myclients">
+        <h2>{{ client.sales }}</h2>
+        <h3>{{ client.name }}</h3>
+        <h4>{{ client.address }}</h4>
       </ion-item>
     </ion-list>
   </ion-content>
