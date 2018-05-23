@@ -1,16 +1,20 @@
 <ion-header>
-    <ion-navbar>
-      <ion-title>Entry OTP</ion-title>
-    </ion-navbar>
-  </ion-header>
-  <ion-content>
-    <ion-list>
-      <ion-item>
-        <ion-label fixed>Masukkan OTP</ion-label>
-        <ion-input type="text" placeholder="OTP"></ion-input>
-      </ion-item>
-    </ion-list>
-    <div padding>
-      <button ion-button color="primary" block>Submit</button>
-    </div>
-  </ion-content>
+  <ion-navbar>
+    <ion-title>Entry OTP</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>Masukkan OTP</ion-label>
+      <ion-input type="text" [(ngModel)]="otp.val" placeholder="OTP"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Result</ion-label>
+      <ion-input type="text" [(ngModel)]="otp.confirm" placeholder="Result"></ion-input>
+    </ion-item>
+  </ion-list>
+  <div padding>
+    <button ion-button color="primary" (click)="sendOtp()" block>Submit</button>
+  </div>
+</ion-content>

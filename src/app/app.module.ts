@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { VisitsPage } from '../pages/visits/visits';
 import { AddVisitPage } from '../pages/visits/add';
 import { EntryOtpPage } from '../pages/visits/entryOtp';
+
 import { AppSettingsPage } from '../pages/home/settings';
 import { HttpClientModule } from '@angular/common/http';
 
