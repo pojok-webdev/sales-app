@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { NavController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
+import { EntryOtpPage } from '../visits/entryOtp';
 @Component({
   templateUrl: 'add.html'
 })
@@ -11,7 +13,7 @@ export class AddVisitPage {
     address:'',
     phone:''
   }
-  constructor(private http: HttpClient ){}
+  constructor(private http: HttpClient, public nav :NavController){}
   sendRequest(){
     console.log("Should be sent")
     this.request = this.http.post(
@@ -24,6 +26,7 @@ export class AddVisitPage {
     )
     this.request.subscribe(data=>{
       console.log("Data",data);
+      this.nav.push(EntryOtpPage);
     })
   }
 }
