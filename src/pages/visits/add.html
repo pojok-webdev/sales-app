@@ -25,6 +25,10 @@
         <ion-label fixed>Latitude</ion-label>
         <ion-input type="text" [(ngModel)]="loc.latitude" placeholder="Latitude"></ion-input>
       </ion-item>
+      <ion-item>
+        <ion-label fixed>AM</ion-label>
+        <ion-input type="text" [(ngModel)]="am.name" placeholder="Nama AM"></ion-input>
+      </ion-item>
     </ion-list>
     <div padding>
       <button ion-button color="primary" (click)="getCurrentLocation()" block>Refresh Location</button>

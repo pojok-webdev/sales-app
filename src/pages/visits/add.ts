@@ -19,6 +19,9 @@ export class AddVisitPage {
     longitude : 0,
     latitude : 0
   }
+  am = {
+    name: 'puji'
+  }
   constructor(private http: HttpClient, public nav :NavController, public geolocation: Geolocation){
     this.getCurrentLocation()
   }
@@ -31,7 +34,6 @@ export class AddVisitPage {
     .catch(err=>{
       console.log("Error",err)
     });
-
   }
   sendRequest(){
       this.request = this.http.post(
@@ -41,7 +43,8 @@ export class AddVisitPage {
           address:this.client.address,
           phone:this.client.phone,
           latitude:this.loc.latitude,
-          longitude:this.loc.longitude
+          longitude:this.loc.longitude,
+          sender:this.am.name
         },{responseType:'text'}
       )
       this.request.subscribe(data=>{
