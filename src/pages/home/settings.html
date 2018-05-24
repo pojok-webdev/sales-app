@@ -13,8 +13,19 @@
         <ion-label fixed>Email</ion-label>
         <ion-input type="text" placeholder="Alamat"></ion-input>
       </ion-item>
+      <ion-item>
+        <ion-label fixed>Latitude</ion-label>
+        <ion-input type="text" placeholder="Latitude" [(ngModel)]="loc.latitude"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Longitude</ion-label>
+        <ion-input type="text" placeholder="Longitude" [(ngModel)]="loc.longitude"></ion-input>
+      </ion-item>
     </ion-list>
     <div padding>
-      <button ion-button color="primary" block>Simpan</button>
+      <button ion-button color="primary" (click)="getCurrentLocation()" block>Refresh Location</button>
+    </div>
+    <div padding>
+      <button ion-button color="primary" (click)="watchLocation()" block>Watch Location</button>
     </div>
   </ion-content>

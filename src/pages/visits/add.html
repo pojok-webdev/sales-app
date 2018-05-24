@@ -17,7 +17,18 @@
         <ion-label fixed>Handphone</ion-label>
         <ion-input type="text" [(ngModel)]="client.phone" placeholder="Handphone"></ion-input>
       </ion-item>
+      <ion-item>
+        <ion-label fixed>Longitude</ion-label>
+        <ion-input type="text" [(ngModel)]="loc.longitude" placeholder="Longitude"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Latitude</ion-label>
+        <ion-input type="text" [(ngModel)]="loc.latitude" placeholder="Latitude"></ion-input>
+      </ion-item>
     </ion-list>
+    <div padding>
+      <button ion-button color="primary" (click)="getCurrentLocation()" block>Refresh Location</button>
+    </div>
     <div padding>
       <button ion-button color="primary" (click)="sendRequest()" block>Ajukan Request</button>
     </div>

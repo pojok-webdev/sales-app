@@ -13,6 +13,7 @@ import { EntryOtpPage } from '../pages/visits/entryOtp';
 import { AppSettingsPage } from '../pages/home/settings';
 import { HttpClientModule } from '@angular/common/http';
 
+import { Geolocation } from '@ionic-native/geolocation';
 @NgModule({
   declarations: [
     MyApp,
@@ -39,6 +40,7 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
     StatusBar,
     SplashScreen,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

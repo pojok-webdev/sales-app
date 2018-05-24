@@ -3,6 +3,7 @@ import { App,MenuController, NavController } from 'ionic-angular';
 import { VisitsPage } from '../visits/visits'
 import { AddVisitPage } from '../visits/add'
 import { EntryOtpPage } from '../visits/entryOtp';
+import { AppSettingsPage } from './settings';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -21,6 +22,9 @@ export class HomePage {
   openPage = (pageToOpen)=>{
     console.log("openPage",pageToOpen);
     this.nav.push(VisitsPage);
+  }
+  openSettingPage = ()=>{
+    this.nav.push(AppSettingsPage)
   }
   entryOtp = ()=>{
     console.log("openPage");
