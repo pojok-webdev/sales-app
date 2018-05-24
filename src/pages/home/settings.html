@@ -7,25 +7,14 @@
     <ion-list>
       <ion-item>
         <ion-label fixed>Nama Sales</ion-label>
-        <ion-input type="text" placeholder="Nama Pelanggan"></ion-input>
+        <ion-input type="text" [(ngModel)]="sales.name" placeholder="Nama Sales"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label fixed>Email</ion-label>
-        <ion-input type="text" placeholder="Alamat"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label fixed>Latitude</ion-label>
-        <ion-input type="text" placeholder="Latitude" [(ngModel)]="loc.latitude"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label fixed>Longitude</ion-label>
-        <ion-input type="text" placeholder="Longitude" [(ngModel)]="loc.longitude"></ion-input>
+        <ion-input type="text" [(ngModel)]="sales.email" placeholder="Email Sales"></ion-input>
       </ion-item>
     </ion-list>
     <div padding>
-      <button ion-button color="primary" (click)="getCurrentLocation()" block>Refresh Location</button>
-    </div>
-    <div padding>
-      <button ion-button color="primary" (click)="watchLocation()" block>Watch Location</button>
+      <button ion-button color="primary" (click)="saveSetting()" block>Simpan</button>
     </div>
   </ion-content>

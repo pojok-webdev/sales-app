@@ -20,7 +20,8 @@ export class AddVisitPage {
     latitude : 0
   }
   am = {
-    name: 'puji'
+    name: 'puji',
+    email: 'puji@padi.net.id'
   }
   constructor(private http: HttpClient, public nav :NavController, public geolocation: Geolocation){
     this.getCurrentLocation()
@@ -34,6 +35,16 @@ export class AddVisitPage {
     .catch(err=>{
       console.log("Error",err)
     });
+  }
+  watchLocation(){
+    let watch = this.geolocation.watchPosition();
+    watch.subscribe((data)=>{
+      console.log("Data",data)
+      this.loc.longitude = data.coords.longitude;
+      this.loc.latitude = data.coords.latitude;
+      console.log("Data Latitude",data.coords.latitude);
+      console.log("Data Longitude",data.coords.longitude);
+    })
   }
   sendRequest(){
       this.request = this.http.post(
