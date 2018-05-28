@@ -20,7 +20,7 @@ export class AppSettingsPage {
     this.getSetting();
   }
   getSetting(){
-    this.request = this.http.get('http://192.168.0.117:1946/getmobiledevice/'+this.getImei())
+    this.request = this.http.get('http://192.168.0.117:1946/getmobiledevice/'+this.device.IMEI)
     this.request.subscribe(data=>{
       console.log("Data",data)
       this.sales.email = data.email;
