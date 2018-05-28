@@ -14,6 +14,8 @@ import { AppSettingsPage } from '../pages/home/settings';
 import { HttpClientModule } from '@angular/common/http';
 
 import { Geolocation } from '@ionic-native/geolocation';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
+import { Uid } from '@ionic-native/uid';
 @NgModule({
   declarations: [
     MyApp,
@@ -41,6 +43,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     StatusBar,
     SplashScreen,
     Geolocation,
+    Uid,
+    AndroidPermissions,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

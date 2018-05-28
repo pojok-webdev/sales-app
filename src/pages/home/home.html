@@ -13,9 +13,22 @@
 
 <ion-content padding>
   sales - PadiNET.
-  <p>
-    PadiApp Mobile
-  </p>
+<ion-list>
+  <ion-item>
+    <ion-label fixed>Cari Pelanggan</ion-label>
+    <ion-input type="text" [(ngModel)]="client.name" placeholder="Nama Pelanggan"></ion-input>
+  </ion-item>
+  <ion-item>
+    <button ion-button (click)="searchClient()">Cari</button>
+  </ion-item>
+</ion-list>
+
+<ion-list>
+  <ion-item *ngFor="let res of searchResult">
+    <h2>{{ res.name }}</h2>
+    <h3>{{ res.address }}</h3>
+  </ion-item>
+</ion-list>
 </ion-content>
 <ion-menu side="left" [content]="mycontent">
   <ion-content>

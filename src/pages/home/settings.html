@@ -7,13 +7,20 @@
     <ion-list>
       <ion-item>
         <ion-label fixed>Nama Sales</ion-label>
-        <ion-input type="text" [(ngModel)]="sales.name" placeholder="Nama Sales"></ion-input>
+        <ion-input type="text" [(ngModel)]="sales.username" placeholder="Nama Sales"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label fixed>Email</ion-label>
         <ion-input type="text" [(ngModel)]="sales.email" placeholder="Email Sales"></ion-input>
       </ion-item>
+      <ion-item>
+        <ion-label fixed>IMEI</ion-label>
+        <ion-input type="text" [(ngModel)]="device.IMEI" placeholder="Device IMEI"></ion-input>
+      </ion-item>
     </ion-list>
+    <div padding>
+      <button ion-button color="primary" (click)="getImei()" block>Read IMEI</button>
+    </div>
     <div padding>
       <button ion-button color="primary" (click)="saveSetting()" block>Simpan</button>
     </div>
