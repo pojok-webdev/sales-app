@@ -3,9 +3,9 @@ import { Observable } from 'rxjs/Observable';
 import { NavController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { EntryOtpPage } from '../visits/entryOtp';
-import { Geolocation } from '@ionic-native/geolocation';
 import { ImeiProvider } from '../../providers/imei/imei'
 import { UserProvider } from '../../providers/user/user'
+import { LocationProvider } from '../../providers/location/location';
 
 @Component({
   templateUrl: 'add.html'
@@ -28,9 +28,12 @@ export class AddVisitPage {
   device = {
     imei : ''
   }
-  constructor(private http: HttpClient, public nav :NavController, public geolocation: Geolocation, public imei:ImeiProvider,public user: UserProvider){
-    this.getCurrentLocation()
-    let that = this;
+  constructor(private http: HttpClient, public nav :NavController, public location: LocationProvider, public imei:ImeiProvider,public user: UserProvider){
+    let that = this
+    location.getCurrentLocation(function(data){
+      that.loc.latitude = data.coords.latitude
+      that.loc.longitude = data.coords.longitude
+    })
     imei.getImei(function(imei){
       that.device.imei = imei;
       user.getData(imei,function(data){
@@ -38,26 +41,6 @@ export class AddVisitPage {
         that.am.email = data.email
       })
     });
-  }
-  getCurrentLocation(){
-    this.geolocation.getCurrentPosition()
-    .then(location=>{
-      this.loc.latitude = location.coords.latitude
-      this.loc.longitude = location.coords.longitude
-    })
-    .catch(err=>{
-      console.log("Error",err)
-    });
-  }
-  watchLocation(){
-    let watch = this.geolocation.watchPosition();
-    watch.subscribe((data)=>{
-      console.log("Data",data)
-      this.loc.longitude = data.coords.longitude;
-      this.loc.latitude = data.coords.latitude;
-      console.log("Data Latitude",data.coords.latitude);
-      console.log("Data Longitude",data.coords.longitude);
-    })
   }
   sendRequest(){
       this.request = this.http.post(

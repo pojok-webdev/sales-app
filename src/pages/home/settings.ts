@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Uid } from '@ionic-native/uid';
-import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable'
+import { ImeiProvider } from '../../providers/imei/imei'
+import { UserProvider } from '../../providers/user/user'
 @Component({
   templateUrl: 'settings.html'
 })
@@ -15,16 +15,15 @@ export class AppSettingsPage {
   device={
     IMEI : ''
   };
-  constructor(private http: HttpClient,private uid:Uid, private androidPermissions: AndroidPermissions){ 
-    this.getImei();
-  }
-  getData(imei){
-    this.request = this.http.get('http://192.168.0.117:1946/getmobiledevice/'+imei)
-    this.request.subscribe(data=>{
-      console.log("Data",data)
-      this.sales.email = data[0].email;
-      this.sales.username = data[0].username;
-    })
+  constructor(private http: HttpClient,public imei: ImeiProvider,public user: UserProvider){ 
+    let that = this
+    imei.getImei(function(imei){
+      that.device.IMEI = imei
+      user.getData(imei,function(data){
+        that.sales.email = data.email
+        that.sales.username = data.username
+      })
+    });
   }
   saveSetting(){
     this.request = this.http.post('http://192.168.0.117:1946/savemobiledevice',{
@@ -35,27 +34,5 @@ export class AppSettingsPage {
     this.request.subscribe(data=>{
       console.log("Data",data)
     })
-  }
-  async getImei(){
-    const { hasPermission } = await this.androidPermissions.checkPermission(
-      this.androidPermissions.PERMISSION.READ_PHONE_STATE
-    );
-   
-    if (!hasPermission) {
-      const result = await this.androidPermissions.requestPermission(
-        this.androidPermissions.PERMISSION.READ_PHONE_STATE
-      );
-   
-      if (!result.hasPermission) {
-        this.device.IMEI = 'Permission Required'
-        throw new Error('Permissions required');
-      }
-   
-      // ok, a user gave us permission, we can get him identifiers after restart app
-      return;
-    }
-    this.device.IMEI = this.uid.IMEI
-    this.getData(this.device.IMEI)
-    return this.uid.IMEI
   }
 }

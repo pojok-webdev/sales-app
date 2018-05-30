@@ -18,6 +18,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { Uid } from '@ionic-native/uid';
 import { ImeiProvider } from '../providers/imei/imei';
 import { UserProvider } from '../providers/user/user';
+import { LocationProvider } from '../providers/location/location';
 @NgModule({
   declarations: [
     MyApp,
@@ -50,7 +51,8 @@ import { UserProvider } from '../providers/user/user';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ImeiProvider,
     ImeiProvider,
-    UserProvider
+    UserProvider,
+    LocationProvider
   ]
 })
 export class AppModule {}
