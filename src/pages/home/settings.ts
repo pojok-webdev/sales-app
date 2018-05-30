@@ -17,16 +17,13 @@ export class AppSettingsPage {
   };
   constructor(private http: HttpClient,private uid:Uid, private androidPermissions: AndroidPermissions){ 
     this.getImei();
-    this.getSetting();
   }
-  getSetting(){
-    this.loadData(function(imei){
-      this.request = this.http.get('http://192.168.0.117:1946/getmobiledevice/'+imei)
-      this.request.subscribe(data=>{
-        console.log("Data",data)
-        this.sales.email = data[0].email;
-        this.sales.username = data[0].username;
-      })      
+  getData(imei){
+    this.request = this.http.get('http://192.168.0.117:1946/getmobiledevice/'+imei)
+    this.request.subscribe(data=>{
+      console.log("Data",data)
+      this.sales.email = data[0].email;
+      this.sales.username = data[0].username;
     })
   }
   saveSetting(){
@@ -38,9 +35,6 @@ export class AppSettingsPage {
     this.request.subscribe(data=>{
       console.log("Data",data)
     })
-  }
-  loadData = (callback)=>{
-    callback(this.getImei())
   }
   async getImei(){
     const { hasPermission } = await this.androidPermissions.checkPermission(
@@ -61,6 +55,7 @@ export class AppSettingsPage {
       return;
     }
     this.device.IMEI = this.uid.IMEI
+    this.getData(this.device.IMEI)
     return this.uid.IMEI
   }
 }
