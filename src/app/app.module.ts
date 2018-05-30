@@ -16,6 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { Uid } from '@ionic-native/uid';
+import { ImeiProvider } from '../providers/imei/imei';
+import { UserProvider } from '../providers/user/user';
 @NgModule({
   declarations: [
     MyApp,
@@ -45,7 +47,10 @@ import { Uid } from '@ionic-native/uid';
     Geolocation,
     Uid,
     AndroidPermissions,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ImeiProvider,
+    ImeiProvider,
+    UserProvider
   ]
 })
 export class AppModule {}

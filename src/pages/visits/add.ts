@@ -4,6 +4,8 @@ import { NavController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { EntryOtpPage } from '../visits/entryOtp';
 import { Geolocation } from '@ionic-native/geolocation';
+import { ImeiProvider } from '../../providers/imei/imei'
+import { UserProvider } from '../../providers/user/user'
 
 @Component({
   templateUrl: 'add.html'
@@ -23,8 +25,19 @@ export class AddVisitPage {
     name: 'puji',
     email: 'puji@padi.net.id'
   }
-  constructor(private http: HttpClient, public nav :NavController, public geolocation: Geolocation){
+  device = {
+    imei : ''
+  }
+  constructor(private http: HttpClient, public nav :NavController, public geolocation: Geolocation, public imei:ImeiProvider,public user: UserProvider){
     this.getCurrentLocation()
+    let that = this;
+    imei.getImei(function(imei){
+      that.device.imei = imei;
+      user.getData(imei,function(data){
+        that.am.name = data.username
+        that.am.email = data.email
+      })
+    });
   }
   getCurrentLocation(){
     this.geolocation.getCurrentPosition()
@@ -55,7 +68,8 @@ export class AddVisitPage {
           phone:this.client.phone,
           latitude:this.loc.latitude,
           longitude:this.loc.longitude,
-          sender:this.am.name
+          sender:this.am.name,
+          imei:this.device.imei
         },{responseType:'text'}
       )
       this.request.subscribe(data=>{
